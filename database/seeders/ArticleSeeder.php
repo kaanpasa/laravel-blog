@@ -28,7 +28,7 @@ class ArticleSeeder extends Seeder
                 'image'=>$faker->imageUrl(800, 400, 'Kaan Pasa'),
                 'content'=>$faker->paragraph(6),
                 'slug'=>Str::slug($title),
-                'created_at'=>now(),
+                'created_at'=>$faker->dateTime("now"),
                 'updated_at'=>now()
             ]);
         }
