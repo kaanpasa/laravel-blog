@@ -1,3 +1,4 @@
+@isset($categories)
 <div class="col-md-3">
     <div class="card">
         <div class="card-header">
@@ -5,8 +6,11 @@
         </div>
         <div class="list-group">
             @foreach($categories as $category)
-                <a href="#" class="list-group-item">{{$category->name}}</a>
+                <li class="list-group-item">
+                    <a href="#" >{{$category->name}}</a><span class="badge bg-info float-end">{{$category->articleCount()}}</span>
+                </li>
             @endforeach
         </div>
     </div>
 </div>
+@endif

@@ -4,7 +4,7 @@
                <div class="col-md-9">
                     @foreach($articles as $article)
                         <div class="post-preview">
-                            <a href="post.html">
+                            <a href="{{route('single',[$article->getCategory->slug,$article->slug])}}">
                                 <h2 class="post-title">{{$article->title}}</h2>
                                 <h3 class="post-subtitle">{{Str::limit($article->content,75)}}</h3>
                             </a>
