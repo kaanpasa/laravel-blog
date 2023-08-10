@@ -7,7 +7,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Kaan Pasa {{datE('Y')}}</span>
+                        <span>Tüm Hakları Saklıdır &copy; Kaan Pasa {{datE('Y')}}</span>
                     </div>
                 </div>
             </footer>
@@ -60,6 +60,13 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('back/')}}/js/demo/chart-area-demo.js"></script>
     <script src="{{asset('back/')}}/js/demo/chart-pie-demo.js"></script>
+
+    <script src="{{asset('back/')}}/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{asset('back/')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('back/')}}/js/demo/datatables-demo.js"></script>
+
 
 </body>
 

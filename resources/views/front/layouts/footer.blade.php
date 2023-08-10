@@ -15,7 +15,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Kaan Pasa 2023</div>
+                        <div class="small text-center text-muted fst-italic">Tüm hakları saklıdır &copy; Kaan Pasa 2023</div>
                     </div>
                 </div>
             </div>

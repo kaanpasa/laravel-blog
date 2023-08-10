@@ -42,7 +42,7 @@
                     <div class="col-md-12">
                         <div class="site-heading">
                             <h2>@yield('title')</h2>
-                            <span class="subheading">by <a href="https://www.github.com/kaanpasa" class="header-link" target="_blank">Kaan Pasa</a></span>
+                            <span class="subheading"><a href="https://www.github.com/kaanpasa" class="header-link" target="_blank">Kaan Pasa</a></span>
                         </div>
                     </div>
                 </div>
