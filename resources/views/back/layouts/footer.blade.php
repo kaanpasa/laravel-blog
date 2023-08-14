@@ -67,9 +67,8 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('back/')}}/js/demo/datatables-demo.js"></script>
 
-    @yield('summernote.js')
-    @toastr_js
-    @toastr_render
+    @yield('js')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 
 </html>

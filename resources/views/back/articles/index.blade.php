@@ -24,15 +24,17 @@
                     <tbody>
                         @foreach($articles as $article)
                             <tr>
-                                <td><img src="{{$article->image}}" width="200"></td>
+                                <td><img src="{{$article->image}}" style="max-width:200px; max-height:200px"></td>
                                 <td>{{$article->title}}</td>
                                 <td>{{$article->getCategory->name}}</td>
                                 <td>{{$article->hit}}</td>
                                 <td>{{$article->created_at->format('d-m-Y')}}</td>
-                                <td>{!!$article->status==0 ? "<span class='text-danger'>Pasif</span>" : "<span class='text-success'>Aktif</span>" !!}</td>
+                                <td>
+                                    <input class="status" article-id="{{$article->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($article->status == 1) checked @endif>
+                                </td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-success" title="Görüntüle"><i class="fa fa-eye"></i></a>
-                                    <a href="#" class="btn btn-sm btn-primary" title="Düzenle"><i class="fa fa-pen"></i></a>
+                                    <a href="{{route('admin.makaleler.edit',$article->id)}}" class="btn btn-sm btn-primary" title="Düzenle"><i class="fa fa-pen"></i></a>
                                     <a href="#" class="btn btn-sm btn-danger"title="Sil"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
@@ -44,4 +46,23 @@
     </div>
 </div>
 
+@endsection
+
+@section('css')
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+@endsection
+
+@section('js')
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script>
+  $(function() {
+    $('.status').change(function() {
+        id = $(this)[0].getAttribute('article-id');
+        statu=$(this).prop('checked');
+        $.get("{{route('admin.status')}}", {id:id, statu:statu}, function(data,status){
+            console.log(data);
+        });
+    })
+  })
+</script>
 @endsection

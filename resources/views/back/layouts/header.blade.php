@@ -21,7 +21,6 @@
     <link href="{{asset('back/')}}/css/sb-admin-2.min.css" rel="stylesheet">
 
     <link href="{{asset('back/')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-    @yield('summernote.css')
-    @toastr_css
+    @yield('css')
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
