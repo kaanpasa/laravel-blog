@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        $articles=Article::orderBy('created_at','ASC')->get();
+        $articles=Article::orderBy('created_at','desc')->get();
         return view('back.articles.index', compact('articles'));
     }
 
@@ -86,8 +87,36 @@ class ArticleController extends Controller
         $article->save();
     }
 
+    public function delete($id){
+        Article::find($id)->delete();
+        toastr()->success('Makale, silinen makalelere taşındı');
+        return redirect()->route('admin.makaleler.index');
+    }
+
     public function destroy(string $id)
     {
+        return $id;
+    }
+
+    public function trashed(){
+        $articles = Article::onlyTrashed()->orderBy('deleted_at','desc')->get();
+        return view('back.articles.trashed', compact('articles'));
+    }
+
+    public function recover($id){
+        Article::onlyTrashed()->find($id)->restore();
+        toastr()->success('Makale başarıyla kurtarıldı');
+        return redirect()->route('admin.makaleler.index');
+    }
+
+    public function hardDelete($id){
         
+        $article = Article::onlyTrashed()->find($id);
+        if(File::exists(public_path('/uploads',$article->image))){
+            File::delete(public_path('/uploads',$article->image));
+        }
+        $article->forceDelete();
+        toastr()->success('Makale başarıyla silindi');
+        return redirect()->route('admin.makaleler.index');
     }
 }

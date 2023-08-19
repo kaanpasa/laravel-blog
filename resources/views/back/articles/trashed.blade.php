@@ -1,13 +1,11 @@
 @extends('back.layouts.master')
-@section('title', 'Tüm Makaleler')
+@section('title', 'Silinen Makaleler')
 @section('content')
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{$articles->count()}} makale bulundu 
-                <a href="{{route('admin.trashed.article')}}" class="btn btn-warning btn-sm float-right"><i class="fa fa-trash"></i> Silinen Makaleler</a>
-            </h6>
+            <h6 class="m-0 font-weight-bold text-primary">{{$articles->count()}} makale bulundu</h6>
             
         </div>
         <div class="card-body">
@@ -36,9 +34,8 @@
                                     <input class="status" article-id="{{$article->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($article->status == 1) checked @endif>
                                 </td>
                                 <td style="display: flex">
-                                    <a href="{{route('single',[$article->getCategory->slug, $article->slug])}}" target="_blank" class="btn btn-sm btn-success m-1" title="Görüntüle"><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('admin.makaleler.edit',$article->id)}}" class="btn btn-sm btn-primary m-1" title="Düzenle"><i class="fa fa-pen"></i></a>
-                                    <a href="{{route('admin.delete.article', $article->id)}}" class="btn btn-sm btn-danger m-1"title="Sil"><i class="fa fa-times"></i></a>
+                                    <a href="{{route('admin.recover.article',$article->id)}}" class="btn btn-sm btn-primary m-1" title="Geri Yükle"><i class="fa fa-recycle"></i></a>
+                                    <a href="{{route('admin.hard.delete.article', $article->id)}}" class="btn btn-sm btn-danger m-1"title="Sil"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach

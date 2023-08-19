@@ -26,7 +26,7 @@ $(document).ready(function() {
       }
     },
     "columnDefs": [
-      { "width": "25%", "targets": 1 }
+      { "width": "11.5%", "targets": 6 }
     ]
   });
 });
