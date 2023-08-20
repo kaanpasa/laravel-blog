@@ -14,12 +14,17 @@ Route::prefix('admin')->name('admin.')->middleware('isLogin')->group(function(){
 
 Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function(){
     Route::get('panel', 'App\Http\Controllers\Back\Dashboard@index')->name('dashboard');
+    //MAKALE ROUTES
     Route::get('/makaleler/silinenler','App\Http\Controllers\Back\ArticleController@trashed')->name('trashed.article');
     Route::resource('makaleler','App\Http\Controllers\Back\ArticleController');
     Route::get('/status','App\Http\Controllers\Back\ArticleController@status')->name('status');
     Route::get('/makalesil/{id}','App\Http\Controllers\Back\ArticleController@delete')->name('delete.article');
     Route::get('/makalekesinsil/{id}','App\Http\Controllers\Back\ArticleController@hardDelete')->name('hard.delete.article');
     Route::get('/makalekurtar/{id}','App\Http\Controllers\Back\ArticleController@recover')->name('recover.article');
+    //CATEGORY ROUTES
+    Route::get('/kategoriler','App\Http\Controllers\Back\CategoryController@index')->name("category.index");
+    Route::get('/kategori/status','App\Http\Controllers\Back\CategoryController@status')->name("category.status");
+    Route::post('/kategori/olustur','App\Http\Controllers\Back\CategoryController@create')->name("category.create");
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout');    
 });
 

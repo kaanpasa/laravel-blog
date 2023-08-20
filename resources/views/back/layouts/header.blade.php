@@ -20,7 +20,11 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('back/')}}/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <link href="{{asset('back/')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    @yield('css')
+    <!--Data Table Css-->
+    <link rel="stylesheet" href="{{asset('vendor/')}}/datatable/datatables.min.css" />
+    <!--Toastr Css-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!--Custom Style of Page-->
+    @yield('css')
+    
 </head>

@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('back/')}}/vendor/jquery/jquery.min.js"></script>
     <script src="{{asset('back/')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -64,11 +64,12 @@
     <script src="{{asset('back/')}}/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="{{asset('back/')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{asset('back/')}}/js/demo/datatables-demo.js"></script>
-
-    @yield('js')
+    <!-- Data Table Script -->
+    <script src="{{asset('vendor/')}}/datatable/datatables.min.js"></script>
+    <!--Toastr Script-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @yield('js')
+    
 </body>
 
 </html>
