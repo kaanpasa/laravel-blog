@@ -66,9 +66,13 @@
 
     <!-- Data Table Script -->
     <script src="{{asset('vendor/')}}/datatable/datatables.min.js"></script>
-    <!--Toastr Script-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @notifyJs
     @yield('js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".inset-0").delay(2500).fadeOut(300);
+        });
+    </script>
     
 </body>
 

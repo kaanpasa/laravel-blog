@@ -42,7 +42,7 @@ class ArticleController extends Controller
             $article->image=asset('uploads/').'/'.$imageName;
         }
         $article->save();
-        toastr()->success('Başarılı', 'Makale başarıyla oluşturuldu');
+        notify()->success('Başarılı', 'Makale başarıyla oluşturuldu');
         return redirect()->route('admin.makaleler.index');
     }
 
@@ -76,7 +76,7 @@ class ArticleController extends Controller
             $article->image=asset('uploads/').'/'.$imageName;
         }
         $article->save();
-        toastr()->success('Başarılı', 'Makale başarıyla güncellendi');
+        notify()->success('Başarılı', 'Makale başarıyla güncellendi');
         return redirect()->route('admin.makaleler.index');
     }
 
@@ -89,7 +89,7 @@ class ArticleController extends Controller
 
     public function delete($id){
         Article::find($id)->delete();
-        toastr()->success('Makale, silinen makalelere taşındı');
+        notify()->success('Makale, silinen makalelere taşındı');
         return redirect()->route('admin.makaleler.index');
     }
 
@@ -105,7 +105,7 @@ class ArticleController extends Controller
 
     public function recover($id){
         Article::onlyTrashed()->find($id)->restore();
-        toastr()->success('Makale başarıyla kurtarıldı');
+        notify()->success('Makale başarıyla kurtarıldı');
         return redirect()->route('admin.makaleler.index');
     }
 
@@ -116,7 +116,7 @@ class ArticleController extends Controller
             File::delete(public_path('/uploads',$article->image));
         }
         $article->forceDelete();
-        toastr()->success('Makale başarıyla silindi');
+        notify()->success('Makale başarıyla silindi');
         return redirect()->route('admin.makaleler.index');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -23,14 +24,14 @@ class CategoryController extends Controller
     public function create(Request $request){
         $isExist=Category::whereSlug(Str::slug($request->category))->first();
         if($isExist){
-            toastr()->error($request->category.' adında bir kategori mevcut!');
+            notify()->error($request->category.' adında bir kategori mevcut!','Hata');
             return redirect()->back();
         }
         $category = new Category;
         $category->name=$request->category;
         $category->slug = Str::slug($request->category);
         $category->save();
-        toastr()->success($request->category,'Kategori Başarıyla Oluşturuldu');
+        notify()->success($request->category,'Kategori Başarıyla Oluşturuldu');
         return redirect()->back();
     }
 
@@ -43,14 +44,32 @@ class CategoryController extends Controller
         $isSlugSame=Category::whereSlug(Str::slug($request->slug))->whereNotIn('id',[$request->id])->first();
         $isNameSame=Category::whereName($request->category)->whereNotIn('id',[$request->id])->first();
         if($isSlugSame or $isNameSame){
-            toastr()->error($request->category.' adında bir kategori mevcut!');
+            notify()->error($request->category.' adında bir kategori mevcut!');
             return redirect()->back();
         }
         $category = Category::find($request->id);
         $category->name=$request->category;
         $category->slug = Str::slug($request->slug);
         $category->save();
-        toastr()->success($request->category,'Kategori Başarıyla Güncellendi');
+        notify()->success($request->category.' Kategorisi Güncellendi','Başarılı');
+        return redirect()->back();
+    }
+
+    public function delete(Request $request){
+        $category = Category::findOrFail($request->id);
+        if($category->id == 1){
+            notify()->error('Bu kategori silinemez');
+            return redirect()->back();
+        }
+        $count = $category->articleCount();
+        $message = '';
+        $defaultCategory = Category::find(1);
+        if($count>0){
+            Article::where('categoryId', $category->id)->update(['categoryId'=>1]);
+            $message = 'Bu kategoriye ait '.$count.' makale, '.$defaultCategory->name.' kategorisine aktarıldı.';
+        }
+        $category->delete();
+        notify()->success('Kategori başarıyla silindi',$message);
         return redirect()->back();
     }
 }

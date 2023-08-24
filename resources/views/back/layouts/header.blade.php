@@ -22,9 +22,9 @@
 
     <!--Data Table Css-->
     <link rel="stylesheet" href="{{asset('vendor/')}}/datatable/datatables.min.css" />
-    <!--Toastr Css-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!--Custom Style of Page-->
+    
     @yield('css')
+    @notifyCss
     
 </head>
