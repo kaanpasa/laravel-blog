@@ -1,5 +1,5 @@
 @extends('back.layouts.master')
-@section('title', 'Sayfa Oluştur')
+@section('title', $page->title.' sayfasını düzenle')
 @section('content')
 
 <div class="container-fluid">
@@ -10,22 +10,23 @@
         <div class="card-body">
             @if($errors->any())
             @endif
-            <form method="post" action="{{route('admin.page.post')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.page.update.post',$page->id)}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">Sayfa Başlığı</label>
-                    <input type="text" name="title" class="form-control" required>
+                    <input type="text" name="title" class="form-control" value="{{$page->title}}" required>
                 </div>
                 <div class="form-group">
-                    <label for="">Sayfa Fotoğrafı</label>
-                    <input type="file" name="image" class="form-control" required>
+                    <label for="">Sayfa Fotoğrafı</label><br>
+                    <img src="{{asset($page->image)}}" style="max-width:200px; max-height:200px" class="rounded"><br>
+                    <input type="file" name="image" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Sayfa İçeriği</label>
-                    <textarea name="content" id="summernote" class="form-control" rows="4" required></textarea>
+                    <textarea name="content" id="summernote" class="form-control" rows="4"  required>{!! $page->content !!}</textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Sayfayı Oluştur</button>
+                    <button type="submit" class="btn btn-primary btn-block">Sayfayı Güncelle</button>
                 </div>
             </form>
         </div>

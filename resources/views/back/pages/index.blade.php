@@ -29,7 +29,7 @@
                                 </td>
                                 <td style="display: flex">
                                     <a href="{{route('page',$page->slug)}}" target="_blank" class="btn btn-sm btn-success m-1" title="Görüntüle"><i class="fa fa-eye"></i></a>
-                                    <a href="{{route('admin.category.update',$page->id)}}" class="btn btn-sm btn-primary m-1" title="Düzenle"><i class="fa fa-pen"></i></a>
+                                    <a href="{{route('admin.page.update',$page->id)}}" class="btn btn-sm btn-primary m-1" title="Düzenle"><i class="fa fa-pen"></i></a>
                                     <a page-id="{{$page->id}}" class="btn btn-sm btn-danger delete-btn m-1" title="Sil"><i class="fa fa-trash text-white"></i></a>
                                 </td>
                             </tr>
