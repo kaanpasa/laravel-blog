@@ -63,7 +63,6 @@
                 <h6 class="m-0 font-weight-bold text-primary">Yeni Kategori Oluştur</h6>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary notify" id="notify">notify</a>
                 <form method="post" action="{{route('admin.category.create')}}">
                     @csrf
                     <div class="form-group">
@@ -99,7 +98,7 @@
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->articleCount()}}</td>
                                     <td><input class="status" category-id="{{$category->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($category->status == 1) checked @endif></td>
-                                    <td style="display: flex">
+                                    <td>
                                         <a category-id="{{$category->id}}" class="btn btn-sm btn-primary edit-btn m-1" title="Kategoriyi Düzenle"><i class="fa fa-edit text-white"></i></a>
                                         <a category-id="{{$category->id}}" category-name="{{$category->name}}" category-count="{{$category->articleCount()}}" class="btn btn-sm btn-danger delete-btn m-1" title="Kategoriyi Sil"><i class="fa fa-trash text-white"></i></a>
                                     </td>

@@ -36,6 +36,7 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function(){
     Route::post('sayfalar/olustur','App\Http\Controllers\Back\PageController@post')->name('page.post');
     Route::get('sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@update')->name('page.update');
     Route::post('sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@updatePost')->name('page.update.post');
+    Route::get('sayfalar/siralama','App\Http\Controllers\Back\PageController@orders')->name('page.orders');
     //LOGOUT ROUTE
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout');    
 });

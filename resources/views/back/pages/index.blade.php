@@ -9,25 +9,30 @@
             
         </div>
         <div class="card-body">
+            <div class="alert alert-success" id="orderSuccess" style="display:none">
+                Sıralama başarıyla güncellendi.
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Sıralama</th>
                             <th>Fotoğraf</th>
                             <th>Sayfa Başlığı</th>
                             <th>Durum</th>
                             <th>İşlemler</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="orders">
                         @foreach($pages as $page)
-                            <tr>
+                            <tr id="page_{{$page->id}}">
+                                <td style="width:10px"><i class="fa fa-sort fa-2x handle" style="cursor:move; display:flex; justify-content:center"></i></td>
                                 <td><img src="{{$page->image}}" style="max-width:200px; max-height:200px"></td>
                                 <td>{{$page->title}}</td>
                                 <td>
                                     <input class="status" page-id="{{$page->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($page->status == 1) checked @endif>
                                 </td>
-                                <td style="display: flex">
+                                <td>
                                     <a href="{{route('page',$page->slug)}}" target="_blank" class="btn btn-sm btn-success m-1" title="Görüntüle"><i class="fa fa-eye"></i></a>
                                     <a href="{{route('admin.page.update',$page->id)}}" class="btn btn-sm btn-primary m-1" title="Düzenle"><i class="fa fa-pen"></i></a>
                                     <a page-id="{{$page->id}}" class="btn btn-sm btn-danger delete-btn m-1" title="Sil"><i class="fa fa-trash text-white"></i></a>
@@ -72,6 +77,21 @@
 
 @section('js')
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<script>
+    $('#orders').sortable({
+        handle:'.handle',
+        update:function(){
+            var order = $('#orders').sortable('serialize');
+            $.get("{{route('admin.page.orders')}}?"+order,function(data,status){
+                $("#orderSuccess").show().delay(2000).fadeOut();
+            });
+            
+        }
+    });
+</script>
 <script>
   $(function() {
     $('.status').change(function() {

@@ -33,7 +33,7 @@
                                 <td>
                                     <input class="status" article-id="{{$article->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($article->status == 1) checked @endif>
                                 </td>
-                                <td style="display: flex">
+                                <td>
                                     <a href="{{route('admin.recover.article',$article->id)}}" class="btn btn-sm btn-primary m-1" title="Geri Yükle"><i class="fa fa-recycle"></i></a>
                                     <a href="{{route('admin.hard.delete.article', $article->id)}}" class="btn btn-sm btn-danger m-1"title="Sil"><i class="fa fa-times"></i></a>
                                 </td>

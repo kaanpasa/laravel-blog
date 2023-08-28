@@ -35,7 +35,7 @@
                                 <td>
                                     <input class="status" article-id="{{$article->id}}" type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" @if($article->status == 1) checked @endif>
                                 </td>
-                                <td style="display: flex">
+                                <td>
                                     <a href="{{route('single',[$article->getCategory->slug, $article->slug])}}" target="_blank" class="btn btn-sm btn-success m-1" title="Görüntüle"><i class="fa fa-eye"></i></a>
                                     <a href="{{route('admin.makaleler.edit',$article->id)}}" class="btn btn-sm btn-primary m-1" title="Düzenle"><i class="fa fa-pen"></i></a>
                                     <a href="{{route('admin.delete.article', $article->id)}}" class="btn btn-sm btn-danger m-1"title="Sil"><i class="fa fa-times"></i></a>
