@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Validator;
+use Mail;
 
 use App\Models\Article;
 use App\Models\Category;
@@ -64,12 +65,17 @@ class Homepage extends Controller
             return redirect()->route('contact')->withErrors($validate)->withInput();
         }
 
-        $contact = new Contact;
-        $contact->name=$request->name;
-        $contact->email=$request->email;
-        $contact->topic=$request->topic;
-        $contact->message=$request->message;
-        $contact->save();
+        Mail::send([],[],function($message) use($request){
+            $message->from('iletisim@laravelblog.com','Laravel Blog');
+            $message->to('kaanpasa@protonmail.com');
+            $message->setBody('Mesajı gönderen:'.$request->name.'<br/>
+            Mesajı gönderen mail:'.$request->email.'<br/>
+            Mesaj konusu:'.$request->topic.'<br/>
+            Mesaj:'.$request->message.'<br/><br/>
+            Mesaj gönderilme tarihi:'.now(),'text/html');
+            $message->subject($request->name.' size bir mesaj gönderdi.');
+            
+        });
         return redirect()->route('contact')->with('success','Mesajınızı aldık, teşekkür ederiz.');
     }
 }

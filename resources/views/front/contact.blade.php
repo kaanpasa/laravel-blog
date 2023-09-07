@@ -52,7 +52,15 @@
             İletişim Bilgileri
         </div>
         <div class="card-body">
-           a
+            <pre>Address:
+Keas 69 Str.
+15234, Chalandri
+Athens,
+Greece
+
++30-2106019311 
++30-6977664062 (mobil)
++30-2106398905 (fax)</pre>
         </div>
     </div>
 </div>
