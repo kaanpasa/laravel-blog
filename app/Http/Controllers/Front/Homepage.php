@@ -20,13 +20,15 @@ class Homepage extends Controller
         if(Config::find(1)->active==0){
             return redirect()->to('aktif-degil')->send();
         }
-        view()->share('pages',Page::orderBy('order','ASC')->get());
-        view()->share('categories',Category::all());
+        view()->share('pages',Page::where('status',1)->orderBy('order','ASC')->get());
+        view()->share('categories',Category::where('status',1)->get());
 
     }
 
     public function index(){
-        $data['articles']=Article::orderBy('created_at', 'DESC')->paginate(4);
+        $data['articles']=Article::with('getCategory')->where('status',1)->whereHas('getCategory',function($query){
+            $query->where('status',1);   
+        })->orderBy('created_at', 'DESC')->paginate(5);
         return view('front.homepage',$data);
     }
 
@@ -41,7 +43,7 @@ class Homepage extends Controller
     public function category($slug){
         $category=Category::whereSlug($slug)->first() ?? abort(403, 'Böyle bir kategori bulunamadı');
         $data['category']=$category;
-        $data['articles']=Article::where('categoryId',$category->id)->orderBy('created_at', 'DESC')->paginate(4);
+        $data['articles']=Article::where('categoryId',$category->id)->where('status',1)->orderBy('created_at', 'DESC')->paginate(4);
         return view('front.category', $data);
     }
 
